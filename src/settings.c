@@ -28,10 +28,10 @@
 #define VIBRATE_SETTINGS_KEY 3
 #define SECONDS_HAND_SETTINGS_KEY 4
 
-#define TIMEOUT_DEFAULT 30
-#define DELAY_DEFAULT 5
+#define TIMEOUT_DEFAULT 15
+#define DELAY_DEFAULT 3
 #define VIBRATE_DEFAULT true
-#define SECONDS_HAND_DEFAULT true
+#define SECONDS_HAND_DEFAULT false
 
 typedef enum {
     VitalsMenuTimeout = 0,

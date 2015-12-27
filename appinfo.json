@@ -1,38 +1,51 @@
 {
-  "uuid": "2b50ff13-23f2-40d1-9ddf-2dd06ad07ba2",
-  "shortName": "Vitals",
-  "longName": "Vitals",
-  "companyName": "Bengalbot",
-  "versionCode": 1,
-  "versionLabel": "1.4",
-  "watchapp": {
-    "watchface": false
-  },
-  "appKeys": {},
-  "resources": {
-    "media": [
-      {
-        "menuIcon": true,
-        "type": "png",
-        "name": "IMAGE_MENU_ICON",
-        "file": "images/caduceus_icon.png"
-      },
-      {
-        "type": "png",
-        "name": "WATCHFACE_BACKGROUND",
-        "file": "images/watch-background.png"
-      },
-      {
-        "type": "png",
-        "name": "HEART",
-        "file": "images/heart.png"
-      }
-    ]
-  },
-  "targetPlatforms": [
-    "aplite",
-    "basalt",
-    "chalk"
-  ],
-  "sdkVersion": "3"
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "Bengalbot",
+    "longName": "Vitals",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/suzu004.png",
+                "name": "IMAGE_BK_SUZU004",
+                "targetPlatforms": [
+                    "aplite",
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/watch-background.png",
+                "name": "WATCHFACE_BACKGROUND",
+                "type": "png"
+            },
+            {
+                "file": "images/heart.png",
+                "name": "HEART",
+                "type": "png"
+            },
+            {
+                "file": "images/caduceus_icon.png",
+                "menuIcon": true,
+                "name": "IMAGE_MENU_ICON",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Vitals",
+    "targetPlatforms": [
+        "aplite",
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "2b50ff13-23f2-40d1-9ddf-2dd06ad07ba2",
+    "versionLabel": "1.4",
+    "watchapp": {
+        "watchface": false
+    }
 }

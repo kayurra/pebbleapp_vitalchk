@@ -137,28 +137,28 @@ void layout_date_layer(struct tm *t) {
 
     switch(app.date_location) {
     case Right:
-        layer_set_frame((Layer *)app.day_label, GRect(SCREEN_WIDTH-62-LEFT_RIGHT_MARGIN, SCREEN_HEIGHT/2-28, 40, 30));
+        layer_set_frame((Layer *)app.day_label, GRect(SCREEN_WIDTH-62-LEFT_RIGHT_MARGIN, SCREEN_HEIGHT/2-28, 37, 30));
         text_layer_set_text_alignment(app.day_label, GTextAlignmentCenter);
-        layer_set_frame((Layer *)app.num_label, GRect(SCREEN_WIDTH-62-LEFT_RIGHT_MARGIN, SCREEN_HEIGHT/2-7, 40, 30));
+        layer_set_frame((Layer *)app.num_label, GRect(SCREEN_WIDTH-62-LEFT_RIGHT_MARGIN, SCREEN_HEIGHT/2-7, 37, 30));
         text_layer_set_text_alignment(app.num_label, GTextAlignmentCenter);
         break;
     case Bottom:
-        layer_set_frame((Layer *)app.day_label, GRect(SCREEN_WIDTH/2 - 37, SCREEN_HEIGHT-59-TOP_BOTTOM_MARGIN, 40, 30));
-        text_layer_set_text_alignment(app.day_label, GTextAlignmentRight);
-        layer_set_frame((Layer *)app.num_label, GRect(SCREEN_WIDTH/2 + 9, SCREEN_HEIGHT-59-TOP_BOTTOM_MARGIN, 40, 30));
-        text_layer_set_text_alignment(app.num_label, GTextAlignmentLeft);
+        layer_set_frame((Layer *)app.day_label, GRect(SCREEN_WIDTH/2 - 37, SCREEN_HEIGHT-59-TOP_BOTTOM_MARGIN, 37, 30));
+        text_layer_set_text_alignment(app.day_label, GTextAlignmentCenter);
+        layer_set_frame((Layer *)app.num_label, GRect(SCREEN_WIDTH/2 + 9, SCREEN_HEIGHT-59-TOP_BOTTOM_MARGIN, 37, 30));
+        text_layer_set_text_alignment(app.num_label, GTextAlignmentCenter);
         break;
     case Left:
-        layer_set_frame((Layer *)app.day_label, GRect(25+LEFT_RIGHT_MARGIN, SCREEN_HEIGHT/2-28, 40, 30));
+        layer_set_frame((Layer *)app.day_label, GRect(25+LEFT_RIGHT_MARGIN, SCREEN_HEIGHT/2-28, 37, 30));
         text_layer_set_text_alignment(app.day_label, GTextAlignmentCenter);
-        layer_set_frame((Layer *)app.num_label, GRect(25+LEFT_RIGHT_MARGIN, SCREEN_HEIGHT/2-7, 40, 30));
+        layer_set_frame((Layer *)app.num_label, GRect(25+LEFT_RIGHT_MARGIN, SCREEN_HEIGHT/2-7, 37, 30));
         text_layer_set_text_alignment(app.num_label, GTextAlignmentCenter);
         break;
     default:
-        layer_set_frame((Layer *)app.day_label, GRect(SCREEN_WIDTH/2 - 37, 25+TOP_BOTTOM_MARGIN, 40, 30));
-        text_layer_set_text_alignment(app.day_label, GTextAlignmentRight);
-        layer_set_frame((Layer *)app.num_label, GRect(SCREEN_WIDTH/2 + 9, 25+TOP_BOTTOM_MARGIN, 40, 30));
-        text_layer_set_text_alignment(app.num_label, GTextAlignmentLeft);
+        layer_set_frame((Layer *)app.day_label, GRect(SCREEN_WIDTH/2 - 37, 25+TOP_BOTTOM_MARGIN, 37, 30));
+        text_layer_set_text_alignment(app.day_label, GTextAlignmentCenter);
+        layer_set_frame((Layer *)app.num_label, GRect(SCREEN_WIDTH/2 + 9, 25+TOP_BOTTOM_MARGIN, 37, 30));
+        text_layer_set_text_alignment(app.num_label, GTextAlignmentCenter);
     }
 }
 
@@ -182,12 +182,12 @@ void hands_update_proc(Layer *layer, GContext *ctx) {
     if (app.settings.seconds_hand || app.state == VitalsStateCountPulses) {
         secondHand.y = (int16_t)(-cos_lookup(second_angle) * (int32_t)(secondHandLength-2) / TRIG_MAX_RATIO) + center.y;
         secondHand.x = (int16_t)(sin_lookup(second_angle) * (int32_t)(secondHandLength-2) / TRIG_MAX_RATIO) + center.x;
-        graphics_context_set_stroke_color(ctx, GColorWhite);
+        graphics_context_set_stroke_color(ctx, GColorYellow);
         graphics_draw_line(ctx, secondHand, center);
     }
 
     if (app.state == VitalsStateWatch) {
-        graphics_context_set_fill_color(ctx, GColorWhite);
+        graphics_context_set_fill_color(ctx, GColorYellow);
         graphics_context_set_stroke_color(ctx, GColorBlack);
 
         // hour hand
@@ -215,7 +215,7 @@ void hands_update_proc(Layer *layer, GContext *ctx) {
             app.last_tm_min = t->tm_min;
         }
         // draw the dot in the middle
-        graphics_context_set_fill_color(ctx, GColorWhite);
+        graphics_context_set_fill_color(ctx, GColorOxfordBlue);
         graphics_fill_circle(ctx, center, 4);
         graphics_context_set_stroke_color(ctx, GColorBlack);
         graphics_draw_circle(ctx, center, 4);
@@ -333,7 +333,7 @@ void window_load(Window *window) {
     GRect bounds = layer_get_bounds(window_layer);
 
     // set the watchface background image
-    app.watchface_background_image = gbitmap_create_with_resource(RESOURCE_ID_WATCHFACE_BACKGROUND);
+    app.watchface_background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BK_SUZU004);
     app.watchface_image_layer = bitmap_layer_create(bounds);
     bitmap_layer_set_bitmap(app.watchface_image_layer, app.watchface_background_image);
     bitmap_layer_set_alignment(app.watchface_image_layer, GAlignCenter);
@@ -354,19 +354,19 @@ void window_load(Window *window) {
     // init day
     app.day_label = text_layer_create(GRect(0, 0, 40, 32));
     text_layer_set_text(app.day_label, "");
-    text_layer_set_background_color(app.day_label, GColorClear);
+    text_layer_set_background_color(app.day_label, GColorOxfordBlue);
     text_layer_set_text_color(app.day_label, GColorWhite);
     text_layer_set_text_alignment(app.day_label, GTextAlignmentCenter);
-    GFont norm18 = fonts_get_system_font(FONT_KEY_GOTHIC_24);
+    GFont norm18 = fonts_get_system_font(FONT_KEY_GOTHIC_28);
     text_layer_set_font(app.day_label, norm18);
     layer_add_child(app.date_layer, text_layer_get_layer(app.day_label));
 
     // init num
     app.num_label = text_layer_create(GRect(0, 22, 40, 32));
     text_layer_set_text(app.num_label, "");
-    text_layer_set_background_color(app.num_label, GColorClear);
+    text_layer_set_background_color(app.num_label, GColorOxfordBlue);
     text_layer_set_text_color(app.num_label, GColorWhite);
-    GFont bold18 = fonts_get_system_font(FONT_KEY_GOTHIC_24);
+    GFont bold18 = fonts_get_system_font(FONT_KEY_GOTHIC_28);
     text_layer_set_text_alignment(app.num_label, GTextAlignmentCenter);
     text_layer_set_font(app.num_label, bold18);
     layer_add_child(app.date_layer, text_layer_get_layer(app.num_label));
