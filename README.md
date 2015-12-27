@@ -1,1 +1,0 @@
-# pebbleapp_vitalchk
